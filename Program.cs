@@ -14,7 +14,15 @@ namespace MonopolyTest
             {
                 number = 0;
                 // Получение данных
-                Task.Run(async () => await MyMethods.GetDataFromDB()).Wait();
+                try
+                {
+                    Task.Run(async () => await MyMethods.GetDataFromDB()).Wait();
+                }
+                catch 
+                {
+                    Console.WriteLine("Ошибка получения данных с БД\n");
+
+                } 
                 Console.Clear();
                 Console.WriteLine("Тестовое задание для \"Монополия\" Дегтерев С.О.\n");
                 Console.WriteLine("1. Добавить паллет.");

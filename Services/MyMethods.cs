@@ -288,11 +288,17 @@ namespace MonopolyTest.Services
         // Получить данные из БД
         public static async Task GetDataFromDB()
         {
-
-            // Получение всех паллетов
-            Pallets = new List<Pallet>(await ContextDB.GetContext().Pallets.AsQueryable().ToListAsync());
-            // Получение всех коробок
-            Boxes = new List<Box>(await ContextDB.GetContext().Boxes.AsQueryable().ToListAsync());
+            try
+            {
+                // Получение всех паллетов
+                Pallets = new List<Pallet>(await ContextDB.GetContext().Pallets.AsQueryable().ToListAsync());
+                // Получение всех коробок
+                Boxes = new List<Box>(await ContextDB.GetContext().Boxes.AsQueryable().ToListAsync());
+            }
+            catch
+            {
+                throw;
+            }
         }
         // Добавить коробку на паллет
         private static void AddBoxOnPallet(Pallet pallet)
